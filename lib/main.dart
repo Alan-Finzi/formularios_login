@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:formvalidation/src/page/home_page.dart';
+import 'package:formvalidation/src/page/login_page.dart';
 
 void main() => runApp(MyApp());
 
@@ -9,6 +11,11 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'formulario',
       initialRoute: 'login',
+
+      routes: {
+        'login': (BuildContext context) => LoginPage(),
+        'home': (BuildContext context) => HomePage()
+      },
 
     );
   }
