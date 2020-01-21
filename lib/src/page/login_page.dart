@@ -92,9 +92,15 @@ final circulo = Container(
                Text('Ingreso',style: TextStyle(fontSize: 20.0)),
                SizedBox(height: 60.0),
                _crearMail(),
+               SizedBox(height: 30.0,),
+               _crearPassword(),
+               SizedBox(height: 30.0,),
+               _crearBoton()
              ],
            ),
-         )
+         ),
+         Text('¿olvido contraseña?'),
+         SizedBox(height: 100.0,)
        ],
      ),
     );
@@ -106,9 +112,47 @@ final circulo = Container(
       child: TextField(
         keyboardType: TextInputType.emailAddress,
         decoration: InputDecoration(
-          icon: Icon (Icons.alternate_email,color: Colors.deepPurple,)
+          icon: Icon (Icons.alternate_email,color: Colors.deepPurple,),
+          hintText: 'ejemplo@correo.com',
+          labelText: 'correo electronico'
         ),
       ),
     );
  }
+
+
+  Widget _crearPassword() {
+    return Container(
+      padding: EdgeInsets.symmetric(horizontal: 20.0),
+      child: TextField(
+        obscureText: true,
+        keyboardType: TextInputType.emailAddress,
+        decoration: InputDecoration(
+            icon: Icon (Icons.block,color: Colors.deepPurple,),
+            labelText: 'contraseña'
+        ),
+      ),
+    );
+  }
+
+
+  Widget _crearBoton(){
+
+    return RaisedButton(
+      child: Container(
+        padding: EdgeInsets.symmetric(horizontal: 80.0,vertical: 15.0),
+        child: Text('ingresar'),
+      ),
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(20.0),
+      ),
+      elevation: 10.0,
+      color: Colors.deepPurple,
+      textColor: Colors.white,
+      onPressed: (){},
+    );
+  }
+
+
+
 }
