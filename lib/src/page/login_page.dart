@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:formvalidation/src/blocks/provider.dart';
 
 
 class LoginPage extends StatelessWidget {
@@ -66,6 +67,7 @@ final circulo = Container(
 
   Widget _loginForm(BuildContext context) {
 
+    final bloc = Provider.of(context);
     final size = MediaQuery.of(context).size;
 
     return SingleChildScrollView(
@@ -87,11 +89,11 @@ final circulo = Container(
              ]
 
            ),
-           child:  Column( 
+           child:  Column(
              children: <Widget>[
                Text('Ingreso',style: TextStyle(fontSize: 20.0)),
                SizedBox(height: 60.0),
-               _crearMail(),
+               _crearMail(bloc),
                SizedBox(height: 30.0,),
                _crearPassword(),
                SizedBox(height: 30.0,),
@@ -106,18 +108,29 @@ final circulo = Container(
     );
   }
 
- Widget _crearMail() {
-    return Container(
-      padding: EdgeInsets.symmetric(horizontal: 20.0),
-      child: TextField(
-        keyboardType: TextInputType.emailAddress,
-        decoration: InputDecoration(
-          icon: Icon (Icons.alternate_email,color: Colors.deepPurple,),
-          hintText: 'ejemplo@correo.com',
-          labelText: 'correo electronico'
-        ),
-      ),
+ Widget _crearMail(LoginBloc bloc ) {
+
+    StreamBuilder(
+      stream: bloc.emailStream ,
+      builder: (BuildContext context, AsyncSnapshot snapshot){
+        return Container(
+          padding: EdgeInsets.symmetric(horizontal: 20.0),
+          child: TextField(
+            keyboardType: TextInputType.emailAddress,
+            decoration: InputDecoration(
+                icon: Icon (Icons.alternate_email,color: Colors.deepPurple,),
+                hintText: 'ejemplo@correo.com',
+                labelText: 'Correo electrÃ³nico',
+                counterText: snapshot.data,
+                errorText: snapshot.error
+
+            ),
+            onChanged:bloc.changeEmail ,
+          ),
+        );
+      },
     );
+
  }
 
 
